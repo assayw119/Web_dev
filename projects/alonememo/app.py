@@ -15,9 +15,8 @@ def home():
 
 @app.route('/memo', methods=['GET'])
 def listing():
-    sample_receive = request.args.get('sample_give')
-    print(sample_receive)
-    return jsonify({'msg':'GET 연결되었습니다!'})
+    articles = list(db.articles.find({}, {'_id':False}))
+    return jsonify({'all_articles':articles})
 
 ## API 역할을 하는 부분
 @app.route('/memo', methods=['POST'])
@@ -40,11 +39,11 @@ def saving():
     desc = soup.select_one('meta[property="og:description"]')['content']
 
     doc = {
-        'title':title,
-        'image':image,
-        'desc':desc,
-        'url':url_receive,
-        'comment':comment_receive
+        'title': title,
+        'image': image,
+        'desc': desc,
+        'url': url_receive,
+        'comment': comment_receive
     }
 
     db.articles.insert_one(doc)
