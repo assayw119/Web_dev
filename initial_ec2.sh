@@ -11,7 +11,7 @@ pip3 --version
 sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
 
 # port forwarding
-sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 5000
+sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 5001
 
 # MongoDB - install
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
